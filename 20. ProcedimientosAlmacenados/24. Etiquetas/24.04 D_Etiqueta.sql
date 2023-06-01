@@ -1,6 +1,8 @@
 -- D_Etiqueta
 -- Borra una etiqueta por su id
 
+DROP PROCEDURE IF EXISTS D_Etiqueta;
+
 DELIMITER //
 CREATE PROCEDURE D_Etiqueta
 (

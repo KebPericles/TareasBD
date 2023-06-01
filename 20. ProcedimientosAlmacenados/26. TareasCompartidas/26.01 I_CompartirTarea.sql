@@ -1,6 +1,8 @@
 -- I_CompartirTarea
 -- Nueva tarea compartida a otro usuario
 
+DROP PROCEDURE IF EXISTS I_CompartirTarea;
+
 DELIMITER //
 CREATE PROCEDURE I_CompartirTarea (
         IN p_idTarea INT,

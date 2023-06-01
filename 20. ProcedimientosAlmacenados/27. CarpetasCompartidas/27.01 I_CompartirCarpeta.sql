@@ -1,6 +1,8 @@
 -- I_CompartirCarpeta
 -- Nueva carpeta compartida a otro usuario
 
+DROP PROCEDURE IF EXISTS I_CompartirCarpeta;
+
 DELIMITER //
 CREATE PROCEDURE I_CompartirCarpeta(
         IN p_idCarpeta INT,

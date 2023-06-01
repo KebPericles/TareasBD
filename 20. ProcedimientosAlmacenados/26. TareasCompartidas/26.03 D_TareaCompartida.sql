@@ -1,6 +1,8 @@
 -- D_TareaCompartida
 -- Borra el acceso de un usuario a una tarea y sus descendientes
 
+DROP PROCEDURE IF EXISTS D_TareaCompartida;
+
 DELIMITER //
 CREATE PROCEDURE D_TareaCompartida(
         IN p_idTarea INT,

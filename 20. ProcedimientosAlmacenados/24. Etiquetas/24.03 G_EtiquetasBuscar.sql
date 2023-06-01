@@ -1,6 +1,8 @@
 -- G_EtiquetasBuscar
 -- Buscar todas las etiquetas de un usuario que coincidan por nombre
 
+DROP PROCEDURE IF EXISTS G_EtiquetasBuscar;
+
 DELIMITER // 
 CREATE PROCEDURE G_EtiquetasBuscar
 (

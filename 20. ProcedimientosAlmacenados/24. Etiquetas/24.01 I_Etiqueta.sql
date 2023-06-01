@@ -1,5 +1,7 @@
 -- I_Etiqueta
 
+DROP PROCEDURE IF EXISTS I_Etiqueta;
+
 DELIMITER //
 CREATE PROCEDURE I_Etiqueta 
 (

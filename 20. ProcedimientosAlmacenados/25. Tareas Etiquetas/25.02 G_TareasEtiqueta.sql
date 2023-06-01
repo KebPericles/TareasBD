@@ -1,6 +1,8 @@
 -- G_TareasEtiqueta
 -- Busca todas las tareas asociadas a una etiqueta
 
+DROP PROCEDURE IF EXISTS G_TareasEtiqueta;
+
 DELIMITER //
 CREATE PROCEDURE G_TareasEtiqueta
 (
