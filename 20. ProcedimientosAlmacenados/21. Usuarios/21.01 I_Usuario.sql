@@ -1,6 +1,6 @@
 -- I_Usuario
---Nuevo usuario
-
+-- Nuevo usuario
+DROP PROCEDURE IF EXISTS;
 DELIMITER //
 CREATE PROCEDURE I_Usuario
 	(
@@ -10,7 +10,7 @@ CREATE PROCEDURE I_Usuario
 	p_apellido VARCHAR(45)
     )
 BEGIN
-	IF NOT EXISTS(select *from usuarios where correo = p_correo)
+	IF NOT EXISTS(select *from Usuarios where correo = p_correo)
 		then INSERT INTO usuarios value(default,p_correo,p_contrasena,p_nombre,p_apellido);
 	END IF;
 END //
