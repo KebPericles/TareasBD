@@ -5,18 +5,22 @@ DROP PROCEDURE IF EXISTS I_CompartirTarea;
 
 DELIMITER //
 CREATE PROCEDURE I_CompartirTarea (
-        IN p_idTarea INT,
-        IN p_idUsuario INT
+	IN p_idTarea INT,
+	IN p_idUsuario INT
 ) BEGIN
-INSERT INTO TareasCompartidas(
-                idTarea,
-                idUsuario,
-                fechaCompartida
-        )
+
+INSERT INTO tareascompartidas(
+	idTarea,
+	idUsuario,
+	fechaCompartida
+)
 VALUES (
-                p_idTarea,
-                p_idUsuario,
-                CURDATE()
-        );
+	p_idTarea,
+	p_idUsuario,
+	CURDATE()
+);
+
+CALL I_CompartirSubtareas(p_idTarea, p_idUsuario);
+
 END //
-DELIMITER;
+DELIMITER ;

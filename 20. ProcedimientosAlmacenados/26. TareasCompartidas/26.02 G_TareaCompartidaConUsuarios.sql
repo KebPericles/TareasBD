@@ -8,7 +8,7 @@ CREATE PROCEDURE G_TareaCompartidaConUsuarios(
         IN p_idTarea INT
 ) BEGIN
 
-SELECT * FROM TareasCompartidas WHERE
+SELECT * FROM tareascompartidas WHERE
         idTarea = p_idTarea;
 
 END //
