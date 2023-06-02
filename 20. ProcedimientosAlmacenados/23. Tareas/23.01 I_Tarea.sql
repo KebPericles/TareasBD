@@ -25,7 +25,7 @@ BEGIN
 	END IF;
 	IF EXISTS(select *from tareas where titulo = p_titulo) 
 		THEN SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Ya existe una carpeta con el mismo titulo y misma posicion';
-  	ELSEIF (p_titulo is null or p_titulo='') 
+	ELSEIF (p_titulo is null or p_titulo='') 
 		THEN SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'El titulo de la carpeta nos puede ser nulo o vacio';
     ELSEIF(p_fechaInicio < now())
 		THEN SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'La fecha de inicio es menor a la fecha en la que se creo la tarea';
