@@ -1,10 +1,6 @@
 -- I_Subtarea
 -- Nueva subtarea
 
-SELECT curdate();
-
-select concat(curdate(),' 23:59:59');
-
 use bd_tareas;
 
 DROP PROCEDURE IF EXISTS I_Subtarea;
@@ -21,10 +17,11 @@ CREATE PROCEDURE I_Subtarea
     in p_prioridad ENUM('Alta', 'Media', 'Baja')
     )
 BEGIN
-	IF( p_idCarpeta = NULL and p_fechaVencimiento = NULL)
+	IF( p_idCarpeta is NULL and p_fechaVencimiento is NULL)
 		THEN set p_fechaVencimiento = concat(curdate(),' 23:59:59');
+        set p_fechaInicio = now();
 	END IF;
-	IF EXISTS(select * from tareas where titulo = p_titulo) 
+	IF EXISTS(select * from tareas where titulo = p_titulo and idTareaPadre = p_idTareaPadre) 
 		THEN SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Ya existe una carpeta con el mismo titulo y misma posicion';
 	ELSEIF (p_titulo is null or p_titulo='') 
 		THEN SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'El titulo de la carpeta nos puede ser nulo o vacio';
