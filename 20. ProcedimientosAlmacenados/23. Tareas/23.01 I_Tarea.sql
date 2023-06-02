@@ -1,27 +1,22 @@
 -- I_Tarea
 -- Nueva tarea
 
-SELECT curdate();
-
-select concat(curdate(),' 23:59:59');
-
-use bd_tareas;
-
 DROP PROCEDURE IF EXISTS I_Tarea;
 DELIMITER //
 CREATE PROCEDURE I_Tarea
 	(
     in p_idUsuario int,
     in p_idCarpeta int,
-    in p_titulo varchar(45),
+    in p_titulo varchar(100),
     in p_descripcion varchar(200),
     in p_fechaInicio datetime,
     in p_fechaVencimiento datetime,
     in p_prioridad ENUM('Alta', 'Media', 'Baja')
     )
 BEGIN
-	IF( p_idCarpeta = NULL and p_fechaVencimiento = NULL)
+	IF( p_idCarpeta is NULL and p_fechaVencimiento is NULL)
 		THEN set p_fechaVencimiento = concat(curdate(),' 23:59:59');
+        set p_fechaInicio = now();
 	END IF;
 	IF EXISTS(select *from tareas where titulo = p_titulo) 
 		THEN SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Ya existe una carpeta con el mismo titulo y misma posicion';
