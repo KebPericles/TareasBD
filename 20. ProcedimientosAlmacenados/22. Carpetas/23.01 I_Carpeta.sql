@@ -1,7 +1,7 @@
 -- I_Carpeta
 -- Nueva Carpeta
 
-DROP PROCEDURE IF EXISTS;
+DROP PROCEDURE IF EXISTS I_Carpeta;
 DELIMITER //
 CREATE PROCEDURE I_Carpeta
 	(
