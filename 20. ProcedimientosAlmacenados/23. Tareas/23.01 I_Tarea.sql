@@ -6,7 +6,7 @@ DELIMITER //
 CREATE PROCEDURE I_Tarea(
     in p_idUsuario int,
     in p_idCarpeta int,
-    in p_titulo varchar(45),
+    in p_titulo varchar(100),
     in p_descripcion varchar(200),
     in p_fechaInicio datetime,
     in p_fechaVencimiento datetime,
