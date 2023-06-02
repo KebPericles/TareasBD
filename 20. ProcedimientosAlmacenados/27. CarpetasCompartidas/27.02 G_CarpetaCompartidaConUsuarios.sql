@@ -8,7 +8,7 @@ CREATE PROCEDURE G_CarpetaCompartidaConUsuarios(
         IN p_idCarpeta INT
 )BEGIN
 
-SELECT * FROM CarpetasCompartidas WHERE
+SELECT * FROM carpetascompartidas WHERE
         idCarpeta = p_idCarpeta;
 
 END //
