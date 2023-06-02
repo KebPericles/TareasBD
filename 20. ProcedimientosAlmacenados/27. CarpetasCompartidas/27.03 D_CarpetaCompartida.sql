@@ -9,6 +9,8 @@ CREATE PROCEDURE D_CarpetaCompartida(
         IN p_idUsuario INT
 )BEGIN
 
+SET @@SESSION.max_sp_recursion_depth=25;
+
 DELETE FROM carpetascompartidas WHERE
         idCarpeta = p_idCarpeta
         AND idUsuario = p_idUsuario;

@@ -9,6 +9,8 @@ CREATE PROCEDURE I_CompartirCarpeta(
         IN p_idUsuario INT
 )BEGIN
 
+SET @@SESSION.max_sp_recursion_depth=255;
+
 INSERT INTO carpetascompartidas(
         idCarpeta,
         idUsuario,

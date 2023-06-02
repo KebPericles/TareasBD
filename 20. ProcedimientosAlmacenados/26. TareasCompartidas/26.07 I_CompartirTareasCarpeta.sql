@@ -10,15 +10,15 @@ CREATE PROCEDURE I_CompartirTareasCarpeta(
 )BEGIN
 
 DECLARE v_idTarea INT;
-DECLARE var_final INT DEFAULT 0;
+DECLARE var_final_tc INT DEFAULT 0;
 
-DECLARE c_tareas CURSOR FOR SELECT idTarea FROM tareas WHERE idCarpeta = p_idCarpeta AND idTareaPadre = NULL;
-DECLARE CONTINUE HANDLER FOR NOT FOUND SET var_final = 1;
+DECLARE c_tareas CURSOR FOR SELECT idTarea FROM tareas WHERE idCarpeta = p_idCarpeta AND idTareaPadre IS NULL;
+DECLARE CONTINUE HANDLER FOR NOT FOUND SET var_final_tc = 1;
 
 OPEN c_tareas;
 
 FETCH c_tareas INTO v_idTarea;
-WHILE NOT var_final = 1 DO
+WHILE NOT var_final_tc = 1 DO
 
 	CALL I_CompartirTarea(v_idTarea, p_idUsuario);
 

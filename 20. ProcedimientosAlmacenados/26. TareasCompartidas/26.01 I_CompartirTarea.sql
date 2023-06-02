@@ -9,6 +9,8 @@ CREATE PROCEDURE I_CompartirTarea (
 	IN p_idUsuario INT
 ) BEGIN
 
+SET @@SESSION.max_sp_recursion_depth=25;
+
 INSERT INTO tareascompartidas(
 	idTarea,
 	idUsuario,

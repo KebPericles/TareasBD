@@ -8,6 +8,7 @@ CREATE PROCEDURE D_TareaCompartida(
 	IN p_idTarea INT,
 	IN p_idUsuario INT
 ) BEGIN
+SET @@SESSION.max_sp_recursion_depth=25;
 
 DELETE FROM tareascompartidas WHERE
 	idTarea = p_idTarea
