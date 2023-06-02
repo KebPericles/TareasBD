@@ -1,0 +1,17 @@
+{
+        "sqltools.connections": [
+                {
+                        "mysqlOptions": {
+                                "authProtocol": "default"
+                        },
+                        "previewLimit": 50,
+                        "server": "tareas-db-2.cgk8ugadcxaa.us-east-2.rds.amazonaws.com",
+                        "port": 3306,
+                        "driver": "MySQL",
+                        "name": "Server - TareasBD",
+                        "database": "bd_tareas",
+                        "username": "admin",
+                        "askForPassword": true
+                }
+        ]
+}
