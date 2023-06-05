@@ -9,7 +9,9 @@ CREATE PROCEDURE I_CompartirCarpeta(
         IN p_idUsuario INT
 )BEGIN
 
-INSERT INTO CarpetasCompartidas(
+SET @@SESSION.max_sp_recursion_depth=255;
+
+INSERT INTO carpetascompartidas(
         idCarpeta,
         idUsuario,
         fechaCompartida
@@ -17,7 +19,11 @@ INSERT INTO CarpetasCompartidas(
         p_idCarpeta,
         p_idUsuario,
         CURDATE()
-)
+);
+
+CALL I_CompartirSubcarpetas(p_idCarpeta, p_idUsuario);
+
+CALL I_CompartirTareasCarpeta(p_idCarpeta, p_idUsuario);
 
 END //
 DELIMITER ;

@@ -1,11 +1,14 @@
--- I_Tarea
--- Nueva tarea
+-- I_Subtarea
+-- Nueva subtarea
 
-DROP PROCEDURE IF EXISTS I_Tarea;
+use bd_tareas;
+
+DROP PROCEDURE IF EXISTS I_Subtarea;
 DELIMITER //
-CREATE PROCEDURE I_Tarea
+CREATE PROCEDURE I_Subtarea
 	(
     in p_idUsuario int,
+    in p_idTareaPadre int,
     in p_idCarpeta int,
     in p_titulo varchar(100),
     in p_descripcion varchar(200),
@@ -18,7 +21,7 @@ BEGIN
 		THEN set p_fechaVencimiento = concat(curdate(),' 23:59:59');
         set p_fechaInicio = now();
 	END IF;
-	IF EXISTS(select *from tareas where titulo = p_titulo) 
+	IF EXISTS(select * from tareas where titulo = p_titulo and idTareaPadre = p_idTareaPadre) 
 		THEN SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Ya existe una carpeta con el mismo titulo y misma posicion';
 	ELSEIF (p_titulo is null or p_titulo='') 
 		THEN SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'El titulo de la carpeta nos puede ser nulo o vacio';
@@ -26,12 +29,14 @@ BEGIN
 		THEN SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'La fecha de inicio es menor a la fecha en la que se creo la tarea';
     ELSEIF(p_fechaInicio > p_fechaVencimiento)
 		THEN SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'La fecha de vencimiento es menor a la fecha de inicio';
+    ELSEIF NOT EXISTS(select * from tareas where idTarea = p_idTareaPadre)
+		THEN SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'No existe la tarea padre';
     ELSE
 		INSERT INTO tareas value
         (
         default,
         p_idUsuario,
-        null,
+        p_idTareaPadre,
         p_idCarpeta,
         p_titulo,
         p_descripcion,

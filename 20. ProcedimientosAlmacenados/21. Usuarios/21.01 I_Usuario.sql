@@ -22,4 +22,4 @@ BEGIN
 END //
 DELIMITER ;
 
--- call I_Usuario('correoprueba2@gmail.com', 'contraseña','javier','west');
+-- call I_Usuario('correoprueba@gmail.com', 'contraseña','javier','west');
