@@ -18,7 +18,6 @@ CREATE PROCEDURE D_Usuario(
   IN p_idUsuario INT
 )
 BEGIN
-
   IF NOT EXISTS (SELECT * FROM usuarios WHERE idUsuario = p_idUsuario) THEN
     SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'El ID de usuario no existe.';
   ELSE

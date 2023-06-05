@@ -7,7 +7,7 @@ CREATE PROCEDURE D_Carpeta(
 )
 BEGIN
     -- Verificar si la carpeta existe
-    IF NOT EXISTS (SELECT * FROM carpetas WHERE idCarpeta = p_idCarpeta) THEN
+    IF NOT EXISTS (SELECT idCarpeta, idUsuario, idCarpetaPadre, nombre, enPapelera FROM carpetas WHERE idCarpeta = p_idCarpeta) THEN
         SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Carpeta inválida';
     ELSE
         DELETE FROM carpetas WHERE idCarpeta = p_idCarpeta;

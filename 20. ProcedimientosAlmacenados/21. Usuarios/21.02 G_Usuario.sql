@@ -5,10 +5,10 @@ CREATE PROCEDURE G_Usuario(
   IN p_idUsuario INT
 )
 BEGIN
-  IF NOT EXISTS (SELECT * FROM usuarios WHERE idUsuario = p_idUsuario) THEN
+  IF NOT EXISTS (SELECT idUsuario FROM usuarios WHERE idUsuario = p_idUsuario) THEN
     SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'El ID de usuario no existe.';
   ELSE
-    SELECT * FROM usuarios WHERE idUsuario = p_idUsuario;
+    SELECT idUsuario, correo, contrasena, nombre, apellido FROM usuarios WHERE idUsuario = p_idUsuario;
   END IF;
 END //
 DELIMITER ;

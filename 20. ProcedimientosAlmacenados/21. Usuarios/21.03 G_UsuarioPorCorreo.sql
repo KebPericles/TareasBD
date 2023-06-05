@@ -6,10 +6,10 @@ CREATE PROCEDURE G_UsuarioPorCorreo(
 )
 BEGIN
   -- Verificar que el correo electrónico exista en la tabla
-  IF NOT EXISTS (SELECT * FROM usuarios WHERE correo = p_correo) THEN
+  IF NOT EXISTS (SELECT idUsuario, correo, nombre, apellido FROM usuarios WHERE correo = p_correo) THEN
     SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'El correo electrónico no existe.';
   ELSE
-    SELECT * FROM usuarios WHERE correo = p_correo;
+    SELECT idUsuario, correo, nombre, apellido FROM usuarios WHERE correo = p_correo;
   END IF;
 END //
 DELIMITER ;

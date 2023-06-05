@@ -1,4 +1,4 @@
--- Stored ProceduridUsuario INTO @idUsuario: U_Carpeta
+-- Stored Procedure: U_Carpeta
 DROP PROCEDURE IF EXISTS U_Carpeta;
 DELIMITER //
 CREATE PROCEDURE U_Carpeta(
@@ -21,5 +21,6 @@ BEGIN
   END IF;
 END //
 DELIMITER ;
+
 	-- select * from carpetas;
 -- CALL U_Carpeta(16, 'CarpetaPruebaModif');
