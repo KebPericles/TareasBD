@@ -9,7 +9,7 @@ BEGIN
         SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Usuario inválido';
     ELSE
         SELECT * FROM carpetas
-        WHERE idUsuario = p_idUsuario AND EnPapelera = 1;
+        WHERE idUsuario = p_idUsuario AND EnPapelera = TRUE;
     END IF;
 END //
 DELIMITER ;
