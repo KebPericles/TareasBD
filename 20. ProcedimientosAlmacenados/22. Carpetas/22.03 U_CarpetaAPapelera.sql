@@ -11,13 +11,13 @@ BEGIN
     SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'El ID de carpeta no existe.';
   ELSE
     -- Mover las tareas relacionadas a la papelera
-    UPDATE tareas SET EnPapelera = 1 WHERE idCarpeta = p_idCarpeta;
+    UPDATE tareas SET enPapelera = TRUE WHERE idCarpeta = p_idCarpeta;
 
     -- Mover las subcarpetas relacionadas a la papelera recursivamente
-    UPDATE carpetas SET EnPapelera = 1 WHERE idCarpeta = p_idCarpeta OR idCarpetaPadre = p_idCarpeta;
+    UPDATE carpetas SET enPapelera = TRUE WHERE idCarpetaPadre = p_idCarpeta;
 
     -- Mover la carpeta actual a la papelera
-    UPDATE carpetas SET EnPapelera = 1 WHERE idCarpeta = p_idCarpeta;
+    UPDATE carpetas SET enPapelera = TRUE WHERE idCarpeta = p_idCarpeta;
   END IF;
 END //
 DELIMITER ;
