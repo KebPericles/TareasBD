@@ -12,7 +12,7 @@ BEGIN
   ELSE
     SELECT idUsuario INTO @idUsuario FROM carpetas WHERE idCarpeta = p_idCarpeta;
     -- Verificar que el nombre de la carpeta no esté en uso por otra carpeta
-    IF EXISTS (SELECT * FROM carpetas WHERE Nombre = p_Nombre AND idUsuario = @idUsuario) THEN
+    IF EXISTS (SELECT * FROM carpetas WHERE nombre = p_Nombre AND idUsuario = @idUsuario) THEN
       SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'El nombre de carpeta ya está en uso.';
     ELSE
       -- Actualizar el nombre de la subcarpeta
