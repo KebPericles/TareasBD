@@ -1,5 +1,4 @@
--- Stored Procedure: U_Carpeta
-USE bd_tareas;
+-- Stored ProceduridUsuario INTO @idUsuario: U_Carpeta
 DROP PROCEDURE IF EXISTS U_Carpeta;
 DELIMITER //
 CREATE PROCEDURE U_Carpeta(
@@ -8,11 +7,12 @@ CREATE PROCEDURE U_Carpeta(
 )
 BEGIN
   -- Verificar que el ID de carpeta existe en la tabla de Carpetas
-  IF NOT EXISTS (SELECT 1 FROM carpetas WHERE idCarpeta = p_idCarpeta) THEN
+  IF NOT EXISTS (SELECT * FROM carpetas WHERE idCarpeta = p_idCarpeta) THEN
     SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'El ID de carpeta no existe.';
   ELSE
+    SELECT idUsuario INTO @idUsuario FROM carpetas WHERE idCarpeta = p_idCarpeta;
     -- Verificar que el nombre de la carpeta no esté en uso por otra carpeta
-    IF EXISTS (SELECT * FROM carpetas WHERE Nombre = p_Nombre AND idCarpeta <> p_idCarpeta) THEN
+    IF EXISTS (SELECT * FROM carpetas WHERE Nombre = p_Nombre AND idUsuario = @idUsuario) THEN
       SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'El nombre de carpeta ya está en uso.';
     ELSE
       -- Actualizar el nombre de la subcarpeta
