@@ -5,7 +5,7 @@ CREATE PROCEDURE G_CarpetasBuscar(
     IN p_nombreCarpeta VARCHAR(255)
 )
 BEGIN
-    IF NOT EXISTS (SELECT * FROM carpetas WHERE nombre = p_nombreCarpeta) THEN
+    IF NOT EXISTS (SELECT * FROM carpetas WHERE nombre LIKE CONCAT('%', p_nombreCarpeta, '%')) THEN
         SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Nombre de carpeta inválido';
     ELSE
         SELECT * FROM carpetas
