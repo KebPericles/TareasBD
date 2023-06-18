@@ -10,7 +10,7 @@ export async function load({ cookies }) {
         const user = JSON.parse(cookies.get('user'));
 
         return {
-                user: user
+                user: JSON.stringify(user)
         }
 }
 

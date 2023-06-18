@@ -13,5 +13,8 @@
                         "username": "admin",
                         "askForPassword": true
                 }
+        ],
+        "githubPullRequests.ignoredPullRequestBranches": [
+                "main"
         ]
 }
