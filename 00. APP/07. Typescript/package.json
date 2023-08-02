@@ -22,6 +22,7 @@
 	"dependencies": {
 		"dotenv": "^16.1.4",
 		"mysql2": "^3.3.4",
-		"sveltestrap": "^5.10.0"
+		"sveltestrap": "^5.10.0",
+		"zod": "^3.21.4"
 	}
 }

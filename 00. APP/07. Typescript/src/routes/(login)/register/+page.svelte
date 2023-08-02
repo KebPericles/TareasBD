@@ -6,10 +6,14 @@
         InputGroup,
         InputGroupText,
     } from "sveltestrap";
-    import type { PageData } from "./$types";
+    import type { ActionData, PageData } from "./$types";
 
     export let data: PageData;
+    export let form: ActionData;
 </script>
+
+<pre>{JSON.stringify(data, null, 2)}</pre>,
+<pre>{JSON.stringify(form, null, 2)}</pre>
 
 <form method="POST" action="/register">
     <Row class="g-4 p-3">
